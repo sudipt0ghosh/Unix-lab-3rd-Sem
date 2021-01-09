@@ -4,6 +4,7 @@
 # Print the digits in reverse order .
 # <----------QUESTION----------->
 
+#!/bin/bash
 read -p "Enter a 5 digit integer number: " value
 sum=0
 
