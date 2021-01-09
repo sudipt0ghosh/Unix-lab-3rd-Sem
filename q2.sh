@@ -1,16 +1,15 @@
-#!/bin/bash 
- 
-echo "Enter the Distance in Kilometer:" 
-read km 
-m=$(echo "scale=2; $km*1000" | bc) 
-cm=$(echo "scale=2; $km*100000" | bc) 
-mm=$(echo "scale=2; $km*1000000" | bc) 
-yd=$(echo "scale=2; $km*1093.61" | bc) 
-ft=$(echo "scale=2; $km*3280.84" | bc) 
-inch=$(echo "scale=2; $km*39370.10" | bc) 
-echo "Distance in Meters:" $m 
-echo "Distance in Centimeter:" $cm 
-echo "Distance in Milimeter:" $mm 
-echo "Distance in Yard:" $yd 
-echo "Distance in Feet:" $ft 
-echo "Distance in Inches:" $inch 
+# <----------QUESTION----------->
+# Write shell script which would recieve the logname during execution, 
+# obtain information about it from /etc/passwd and 
+# display this information on the screen in easily understandable format.
+# <----------QUESTION----------->
+
+read -p "Logname: " name
+str=`grep "$name" /etc/passwd` 
+if ! [ $str ]; then
+    echo "User Doesn't Exist...";exit 1;
+fi
+IFS=':' read -a array <<< "$str"
+printf "|\tUSER\t|\tUID\t|\tGID\t|\tSHELL\t\t|\tHome Directory\t|\n"
+printf "|===============|===============|===============|=======================|=====================\t|\n"
+printf "|\t${array[0]}\t|\t${array[2]}\t|\t${array[3]}\t|\t${array[6]}\t|\t${array[5]}\t|\n"
