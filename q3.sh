@@ -1,16 +1,14 @@
-#!/bin/bash 
- 
-echo "Enter the length of Rectangle:" 
-read len 
-echo "Enter the Breadth of Rectangle:" 
-read bre 
-echo "Enter the radius of Circle:" 
-read r 
-areaR=$(echo "$len*$bre" | bc) 
-periR=$(echo "2*($len+$bre)" | bc) 
-areaC=$(echo "3.14*$r*$r" | bc) 
-circum=$(echo "2*3.14*$r" | bc) 
-echo "Area of Rectangle:" $areaR 
-echo "Perimeter of Rectangle:" $periR 
-echo "Area of Circle:" $areaC 
-echo "Circumference of Circle:" $circum 
+# <----------QUESTION----------->
+# Write a shell script, which will recieve either the filename or the filename with its full path during execution. 
+# This script should obtain information about this file as given by ls -l and 
+# display it in proper format.
+# <----------QUESTION----------->
+#!/bin/bash
+read -p "Filename: " file
+str=`ls -l "$file"`
+echo $str
+read -a array <<< "$str"
+# IFS=':' read -a perms <<< 
+printf "|\tOWNER\t|\tSIZE(b)\t|\tLAST_MOD_TIME\t|\tPERMISSIONS\t|\tLINKS\t|\t\n"
+printf "|===============|===============|=======================|=======================|===============|\n"
+printf "|\t${array[2]}\t|\t${array[3]}\t|\t${array[6]} ${array[5]}, ${array[7]}\t|\t${array[0]}\t|\t${array[1]}\t|\n"
