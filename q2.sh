@@ -3,7 +3,7 @@
 # obtain information about it from /etc/passwd and 
 # display this information on the screen in easily understandable format.
 # <----------QUESTION----------->
-
+#!/bin/bash
 read -p "Logname: " name
 str=`grep "$name" /etc/passwd` 
 if ! [ $str ]; then
