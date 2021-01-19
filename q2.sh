@@ -1,16 +1,22 @@
 # <----------QUESTION----------->
-# Write shell script which would recieve the logname during execution, 
-# obtain information about it from /etc/passwd and 
-# display this information on the screen in easily understandable format.
+# Any integer is input through keyboard.
+# Write a program to find out whether it is an odd or even number
 # <----------QUESTION----------->
 
 #!/bin/bash
-read -p "Logname: " name
-str=`grep "$name" /etc/passwd` 
-if ! [ $str ]; then
-    echo "User Doesn't Exist...";exit 1;
+
+read -p "Enter Integer number: " number
+# expression for only integer. 
+re='^[0-9]+$'
+#handles empty input or invalid input
+if ! [ $number ] || ! [[ $number =~ $re ]]; then
+    echo "Invalid Input"
+    exit 1
+>>>>>>> assignment-5-creation
 fi
-IFS=':' read -a array <<< "$str"
-printf "|\tUSER\t|\tUID\t|\tGID\t|\tSHELL\t\t|\tHome Directory\t|\n"
-printf "|===============|===============|===============|=======================|=====================\t|\n"
-printf "|\t${array[0]}\t|\t${array[2]}\t|\t${array[3]}\t|\t${array[6]}\t|\t${array[5]}\t|\n"
+
+if [ $((number%2)) -eq 0 ]; then
+    echo "$number is Even."
+else
+    echo "$number is Odd."
+fi

@@ -1,3 +1,9 @@
+# <----------QUESTION----------->
+# Write a shell script which receives two filenames as arguments.
+# It should check whether their contents are same or not.
+# If they are same, then second file should be deleted.
+# <----------QUESTION----------->
+
 #!/bin/bash
 if [ $# -lt 2 ]; then
   echo "Insufficient arguments..."
