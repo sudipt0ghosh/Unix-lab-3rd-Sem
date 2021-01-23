@@ -21,4 +21,3 @@ This code makes the text *blink* (Unvarified).
 ```bash
 echo -e "\033[5mSome Text"
 ```
-
