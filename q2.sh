@@ -1,22 +1,6 @@
 # <----------QUESTION----------->
 # Any integer is input through keyboard.
-# Write a program to find out whether it is an odd or even number
+# Write a shell script which gets executed the moment user logs in.
+# It should display the message "Good Morning"/"Good Afternoon"/"Good Evening",
+# depending upon the time at which user logs in
 # <----------QUESTION----------->
-
-#!/bin/bash
-
-read -p "Enter Integer number: " number
-# expression for only integer. 
-re='^[0-9]+$'
-#handles empty input or invalid input
-if ! [ $number ] || ! [[ $number =~ $re ]]; then
-    echo "Invalid Input"
-    exit 1
->>>>>>> assignment-5-creation
-fi
-
-if [ $((number%2)) -eq 0 ]; then
-    echo "$number is Even."
-else
-    echo "$number is Odd."
-fi
