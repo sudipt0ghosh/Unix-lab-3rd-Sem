@@ -1,22 +1,29 @@
 # <----------QUESTION----------->
-# Any integer is input through keyboard.
-# Write a program to find out whether it is an odd or even number
+# Write a shell script which gets executed the moment user logs in.
+# It should display the message "Good Morning"/"Good Afternoon"/"Good Evening",
+# depending upon the time at which user logs in
 # <----------QUESTION----------->
 
 #!/bin/bash
 
-read -p "Enter Integer number: " number
-# expression for only integer. 
-re='^[0-9]+$'
-#handles empty input or invalid input
-if ! [ $number ] || ! [[ $number =~ $re ]]; then
-    echo "Invalid Input"
-    exit 1
->>>>>>> assignment-5-creation
-fi
+# creates the script file
+cat << EOF > ~/greeting.sh
+#!/bin/bash
 
-if [ $((number%2)) -eq 0 ]; then
-    echo "$number is Even."
+time=\`date +"%H"\`
+if [ \$time -gt 0 -a \$time -lt 12 ]; then
+    echo "Good Morning"
+elif [ \$time -gt 11 -a \$time -lt 17 ]; then
+    echo "Good Afternoon"
 else
-    echo "$number is Odd."
+    echo "Good Evening"
+fi
+EOF
+
+# gives the file execute permission
+chmod u+x ~/greeting.sh
+
+#adds the file to .profile
+if ! grep -Fxq "~/greeting.sh" ~/.profile; then
+    echo "~/greeting.sh" >> ~/.profile
 fi

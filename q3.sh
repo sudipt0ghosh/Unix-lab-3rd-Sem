@@ -1,25 +1,27 @@
 # <----------QUESTION----------->
-# If cost price & selling price of an item is input through keyboard,
-# write a program to determine whether the seller has made a profit or incured loss.
-# Also determine how much profit was made or loss incurred.
+# A shell script recieves an argument 'one', 'two', or 'three'.
+# If the argument supplied is 'one' display it in bold, if it is 'two' display it in reverse video and
+# if it is 'three' make it blink on the screen. 
+# If a wrong argument is supplied report it use a case control instruction.
 # <----------QUESTION----------->
 
 #!/bin/bash
-
-read -p "Enter Cost Price: " cost
-read -p "Enter Selling Price: " selling
-# expression for only integer and float. 
-re='^[0-9]+([.][0-9]+)?$'
-#handles empty input or invalid input
-if ! [ $cost ] || ! [[ $cost =~ $re ]] || ! [ $selling ] || ! [[ $selling =~ $re ]]; then
-    echo "Invalid Input Proided..."
-    exit 1
+if [ $# -lt 1 ]; then
+  echo "No argument provided..."
+  exit 1
 fi
 
-diff=`echo "scale=2; $selling-$cost" | bc`
-
-if (( $(echo "scale=2; $diff < 0.0" | bc) )); then
-    echo "Incurred Loss by $(echo "scale=2; $diff * -1" | bc)"
-else
-    echo "Made profit of $diff"
-fi
+case $1 in 
+  'one') tput bold
+        echo $1
+        ;;
+  'two') tput rev
+        echo $1
+        ;;
+  'three') tput blink
+  # my terminal doesn't support blinking, the '5' is for blinking '7' is for colour inversion, 32 is green colour
+        echo  -e "\033[32;5;7m$1\033[0m"
+        ;;
+  *) echo "Wrong Argument."
+esac
+tput sgr0
