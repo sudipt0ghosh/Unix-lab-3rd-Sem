@@ -1,9 +1,6 @@
 # <----------QUESTION----------->
-# Write a shell script that counts the number of directories
-# under the current directory.
+# Write a program to calculate overtime pay of 10 employees.
+# Overtime is paid @ Rs. 12 per hour for every hour worked above 40 hours.
+# Assume that employees do not work for fractional part of an hour
 # <----------QUESTION----------->
 
-#!/bin/bash
-
-count=`ls -Rl | grep -c ^d`
-echo "No. of directories: $count"
