@@ -1,29 +1,14 @@
 # <----------QUESTION----------->
-# Write a shell script which gets executed the moment user logs in.
-# It should display the message "Good Morning"/"Good Afternoon"/"Good Evening",
-# depending upon the time at which user logs in
+# Write a shell script to find the smallest of three numbers that are read from the keyboard.
 # <----------QUESTION----------->
 
 #!/bin/bash
-
-# creates the script file
-cat << EOF > ~/greeting.sh
-#!/bin/bash
-
-time=\`date +"%H"\`
-if [ \$time -gt 0 -a \$time -lt 12 ]; then
-    echo "Good Morning"
-elif [ \$time -gt 11 -a \$time -lt 17 ]; then
-    echo "Good Afternoon"
-else
-    echo "Good Evening"
+read -r -p "Please enter 3 numbers: " -a arr
+small=${arr[0]}
+if [ ${arr[1]} -lt $small ]; then 
+    small=${arr[1]}
 fi
-EOF
-
-# gives the file execute permission
-chmod u+x ~/greeting.sh
-
-#adds the file to .profile
-if ! grep -Fxq "~/greeting.sh" ~/.profile; then
-    echo "~/greeting.sh" >> ~/.profile
+if [ ${arr[2]} -lt $small ]; then 
+    small=${arr[2]}
 fi
+echo "Smallest: "$small
